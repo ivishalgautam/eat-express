@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Outfit } from "next/font/google";
+import { Providers } from "./store/Provider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -19,8 +20,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${outfit.className} h-screen min-h-screen bg-slate-100 dark:bg-slate-950`}
       >
-        <Navbar />
-        {children}
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
