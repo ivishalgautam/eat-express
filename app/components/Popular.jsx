@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/features/popularSlice";
@@ -7,8 +7,21 @@ import Card from "./Card";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
-const Vegetarian = ({ width }) => {
+const Vegetarian = () => {
   const dispatch = useDispatch();
+  let innerWidth = window.innerWidth;
+  const [width, setWidth] = useState(innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [width]);
 
   useEffect(() => {
     dispatch(fetchRecipes());
