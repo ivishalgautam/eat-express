@@ -9,18 +9,16 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 const Vegetarian = () => {
   const dispatch = useDispatch();
-  let innerWidth = window.innerWidth;
-  const [width, setWidth] = useState(innerWidth);
+  const [width, setWidth] = useState();
 
   useEffect(() => {
+    let currWidth = window.innerWidth;
     const handleResize = () => {
-      setWidth(window.innerWidth);
+      setWidth(currWidth);
     };
     window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, [width]);
 
   useEffect(() => {
@@ -37,7 +35,7 @@ const Vegetarian = () => {
         className="w-full"
         aria-label="My Favorite Images"
         options={{
-          perPage: width < 740 ? 1 : width < 960 ? 2 : 3,
+          perPage: width !== undefined < 740 ? 1 : width < 960 ? 2 : 3,
 
           pagination: false,
           drag: "free",
