@@ -1,9 +1,27 @@
 "use client";
+
+import Vegetarian from "./components/Vegetarian";
+import Popular from "./components/Popular";
+import { useEffect, useState } from "react";
+
 export default function Home() {
-  let api_key = "c77fbeb948cd255d45a4c314c6aa0dcf";
+  const [width, setWidth] = useState();
+  useEffect(() => {
+    window.addEventListener("resize", function () {
+      setWidth(window.innerWidth);
+    });
+
+    return () => {
+      window.removeEventListener("resize", function () {
+        console.log("removed");
+      });
+    };
+  }, [width]);
+
   return (
-    <main className="h-[2000px] text-gray-950 dark:text-gray-100 bg-white dark:bg-gray-900 px-4 sm:px-14 md:px-20 lg:px-24">
-      <div className="h-full pt-20 tracking-wider"></div>
+    <main className="min-h-full text-gray-950 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 px-4 sm:px-14 md:px-20 lg:px-24">
+      <Popular width={width} />
+      <Vegetarian width={width} />
     </main>
   );
 }

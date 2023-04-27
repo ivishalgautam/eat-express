@@ -7,7 +7,6 @@ import { BsCart2 } from "react-icons/bs";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
-import { useDispatch, useSelector } from "react-redux";
 import { increment } from "../store/features/counterSlice";
 
 let navList = [
@@ -26,20 +25,19 @@ let navList = [
 ];
 
 const Navbar = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [prevScrollPos, setPrevScrollPos] = useState(5);
   const [isVisible, setIsVisible] = useState(true);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const pathname = usePathname();
-  console.log(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
       const visible = prevScrollPos > currentScrollPos;
 
+      console.log(currentScrollPos);
       setPrevScrollPos(currentScrollPos);
       setIsVisible(visible);
-      console.log(visible);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -52,19 +50,15 @@ const Navbar = () => {
     element.classList.toggle("dark");
   };
 
-  const { count } = useSelector((store) => store.counter);
-  console.log(count);
-  const dispatch = useDispatch();
-
   return (
     <div
       className={`w-full fixed ${
         isVisible ? "translate-y-0" : "-translate-y-16"
-      } px-4 sm:px-14 md:px-20 lg:px-24 bg-indigo-500 dark:bg-gray-900 backdrop-blur-lg drop-shadow-xl text-slate-100 flex items-center justify-between h-16 transition-all`}
+      } px-4 sm:px-14 md:px-20 lg:px-24 bg-indigo-500 dark:bg-gray-950 backdrop-blur-lg drop-shadow-xl text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
     >
       <div
         className={`logo text-xl font-bold tracking-wider`}
-        onClick={() => dispatch(increment())}
+        // onClick={() => dispatch(increment())}
       >
         <Link href="/">
           Eat
