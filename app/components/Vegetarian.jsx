@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/features/vegetarianSlice";
-import Card from "./card";
+import Card from "./Card";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
