@@ -1,4 +1,5 @@
-import React, { useMemo } from "react";
+"use client";
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/features/popularSlice";
