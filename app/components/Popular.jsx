@@ -6,7 +6,7 @@ import Card from "./Card";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 
-const Vegetarian = () => {
+const Vegetarian = ({ width }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,8 +23,7 @@ const Vegetarian = () => {
         className="w-full"
         aria-label="My Favorite Images"
         options={{
-          perPage:
-            window.innerWidth < 580 ? 1 : window.innerWidth < 900 ? 2 : 3,
+          perPage: width < 580 ? 1 : width < 900 ? 2 : 3,
 
           pagination: false,
           drag: "free",

@@ -5,7 +5,7 @@ import Popular from "./components/Popular";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [width, setWidth] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", function () {
       setWidth(window.innerWidth);

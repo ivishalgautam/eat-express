@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/features/vegetarianSlice";
@@ -8,6 +8,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 const Vegetarian = ({ width }) => {
   const dispatch = useDispatch();
+  console.log(width);
 
   useEffect(() => {
     dispatch(fetchRecipes("vegetarian"));
