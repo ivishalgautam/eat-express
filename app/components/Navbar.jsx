@@ -25,7 +25,7 @@ let navList = [
 ];
 
 const Navbar = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(5);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const pathname = usePathname();
@@ -35,7 +35,6 @@ const Navbar = () => {
       const currentScrollPos = window.pageYOffset;
       const visible = prevScrollPos > currentScrollPos;
 
-      console.log(currentScrollPos);
       setPrevScrollPos(currentScrollPos);
       setIsVisible(visible);
     };

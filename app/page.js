@@ -5,16 +5,17 @@ import Popular from "./components/Popular";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [width, setWidth] = useState(window.innerWidth);
+  let innerWidth = window.innerWidth;
+  const [width, setWidth] = useState(innerWidth);
+
   useEffect(() => {
-    window.addEventListener("resize", function () {
+    const handleResize = () => {
       setWidth(window.innerWidth);
-    });
+    };
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", function () {
-        console.log("removed");
-      });
+      window.removeEventListener("resize", handleResize);
     };
   }, [width]);
 

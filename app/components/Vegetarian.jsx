@@ -24,7 +24,7 @@ const Vegetarian = ({ width }) => {
         className="w-full"
         aria-label="My Favorite Images"
         options={{
-          perPage: width < 400 ? 1 : width < 580 ? 2 : width < 900 ? 3 : 4,
+          perPage: width < 400 ? 1 : width < 740 ? 2 : width < 960 ? 3 : 4,
           pagination: false,
           drag: "free",
           gap: "2rem",
