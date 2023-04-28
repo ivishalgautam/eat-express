@@ -9,7 +9,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 const Vegetarian = () => {
   const dispatch = useDispatch();
-  const [width, setWidth] = useState();
+  const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     let currWidth = window.innerWidth;
@@ -35,14 +35,7 @@ const Vegetarian = () => {
         className="w-full"
         aria-label="My Favorite Images"
         options={{
-          perPage:
-            width !== undefined < 400
-              ? 1
-              : width < 740
-              ? 2
-              : width < 960
-              ? 3
-              : 4,
+          perPage: width < 400 ? 1 : width < 740 ? 2 : width < 960 ? 3 : 4,
           pagination: false,
           drag: "free",
           gap: "2rem",
