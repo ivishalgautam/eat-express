@@ -6,23 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { BsCart2 } from "react-icons/bs";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoMdClose } from "react-icons/io";
 import { increment } from "../store/features/counterSlice";
-
-let navList = [
-  {
-    name: "home",
-    href: "/",
-  },
-  {
-    name: "menu",
-    href: "/menu",
-  },
-  {
-    name: "about",
-    href: "/about",
-  },
-];
+import NavList from "./NavList";
+import MobileNavList from "./MobileNavList";
+import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -53,40 +40,25 @@ const Navbar = () => {
     <div
       className={`w-full fixed ${
         isVisible ? "translate-y-0" : "-translate-y-16"
-      } px-4 sm:px-14 md:px-20 lg:px-24 bg-indigo-500 dark:bg-gray-950 backdrop-blur-lg drop-shadow-xl text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
+      } px-4 sm:px-14 md:px-20 lg:px-24 bg-indigo-500 dark:bg-indigo-950 backdrop-blur-lg drop-shadow-xl text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
     >
+      {/* logo */}
       <div
-        className={`logo text-xl font-bold tracking-wider`}
+        className={`logo text-xl font-bold tracking-wider z-10`}
         // onClick={() => dispatch(increment())}
       >
         <Link href="/">
           Eat
-          <span className="text-gray-900 dark:text-indigo-500">express</span>
+          <span className="text-gray-900 dark:text-indigo-400">express</span>
         </Link>
       </div>
 
       {/* nav list */}
       <nav className="ml-auto mr-10 hidden md:block">
-        <ul className="flex items-center justify-center gap-5">
-          {navList.map((navItem, key) => {
-            return (
-              <li key={key} className="capitalize">
-                <Link
-                  href={navItem.href}
-                  className={`hover:text-gray-900 dark:hover:text-indigo-500 ${
-                    pathname === navItem.href
-                      ? "text-gray-900 dark:text-indigo-500 font-extrabold"
-                      : ""
-                  }`}
-                >
-                  {navItem.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <NavList />
       </nav>
 
+      {/* cta */}
       <div className="flex items-center justify-center gap-0 md:gap-2">
         <div className="btn-header">
           <Link
@@ -116,7 +88,7 @@ const Navbar = () => {
       <div
         className={`absolute ${
           showMobileMenu ? "right-0" : "-right-full"
-        } top-0 h-screen w-80 bg-indigo-500 dark:bg-gray-900 transition-all block md:hidden`}
+        } top-0 h-screen w-full sm:w-80 bg-indigo-500 dark:bg-indigo-950 transition-all block md:hidden`}
       >
         <button
           className="btn-header absolute top-2 right-2"
@@ -124,15 +96,7 @@ const Navbar = () => {
         >
           <IoMdClose size={30} />
         </button>
-        <ul className="flex flex-col items-center justify-center mt-20 gap-10">
-          {navList.map((navItem, key) => {
-            return (
-              <li key={key} className="capitalize text-xl">
-                <Link href={navItem.href}>{navItem.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        <MobileNavList />
       </div>
     </div>
   );

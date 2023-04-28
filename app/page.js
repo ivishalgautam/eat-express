@@ -3,7 +3,7 @@ import Popular from "./components/Popular";
 
 export default function Home() {
   return (
-    <main className="min-h-full text-gray-950 dark:text-gray-100 bg-gray-100 dark:bg-gray-900 px-4 sm:px-14 md:px-20 lg:px-24">
+    <main className="min-h-full text-gray-950 dark:text-gray-100 bg-gray-100 dark:bg-slate-950 px-4 sm:px-14 md:px-20 lg:px-24">
       <Popular />
       <Vegetarian />
     </main>
