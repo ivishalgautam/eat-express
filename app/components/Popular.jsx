@@ -9,7 +9,9 @@ import "@splidejs/splide/dist/css/splide.min.css";
 
 const Vegetarian = () => {
   const dispatch = useDispatch();
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 800
+  );
 
   useEffect(() => {
     let currWidth = window.innerWidth;
