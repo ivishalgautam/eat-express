@@ -16,7 +16,7 @@ const Card = ({ id, title, image }) => {
             className="hover:scale-110 transition-transform"
           />
         </figure>
-        <div className="absolute w-full h-2/5 bottom-0 p-2 text-gray-50 flex flex-col items-center justify-center bg-indigo-500 dark:bg-indigo-950">
+        <div className="absolute w-full h-1/3 bottom-0 p-2 text-gray-50 flex flex-col items-center justify-center bg-indigo-500 dark:bg-indigo-950">
           <p key={id} className="text-center tracking-wider text-sm ">
             {title}
           </p>
