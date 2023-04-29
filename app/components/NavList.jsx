@@ -19,7 +19,7 @@ let navList = [
 
 const NavList = () => {
   const pathname = usePathname();
-  console.log(pathname);
+  // console.log(pathname);
 
   return (
     <ul className="flex items-center justify-center gap-5">

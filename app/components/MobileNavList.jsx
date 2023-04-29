@@ -18,10 +18,13 @@ let navList = [
 
 const MobileNavList = () => {
   return (
-    <ul className="flex flex-col items-center justify-center mt-20 gap-10">
+    <ul className="flex flex-col items-start justify-center px-14 mt-20">
       {navList.map((navItem, key) => {
         return (
-          <li key={key} className="capitalize text-xl">
+          <li
+            key={key}
+            className="capitalize text-xl border-b  dark:border-gray-dark w-full leading-[45px] text-[#4f4f4f]"
+          >
             <Link href={navItem.href}>{navItem.name}</Link>
           </li>
         );

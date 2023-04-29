@@ -40,8 +40,10 @@ const Vegetarian = () => {
         options={{
           perPage: width < 740 ? 1 : width < 960 ? 2 : 3,
           pagination: false,
-          drag: "free",
+          // drag: "free",
           gap: "2rem",
+          autoplay: true,
+          snap: true,
         }}
       >
         {isLoading

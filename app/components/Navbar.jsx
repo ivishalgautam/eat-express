@@ -12,12 +12,23 @@ import MobileNavList from "./MobileNavList";
 import { IoMdClose } from "react-icons/io";
 import { BiDish } from "react-icons/bi";
 import Image from "next/image";
+import { Bebas_Neue } from "next/font/google";
+import { closeMenu, openMenu } from "../store/features/menuSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+const bebas = Bebas_Neue({
+  weight: ["400"],
+  subsets: ["latin"],
+  // variable: "--var-bebas-neue",
+});
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const pathname = usePathname();
+  let dispatch = useDispatch();
+  const { isMenuOpen } = useSelector((store) => store.mobileMenu);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +57,7 @@ const Navbar = () => {
     >
       {/* logo */}
       <div
-        className={`logo text-xl font-bold tracking-wider z-10 flex items-center justify-center gap-3`}
+        className={`${bebas.className} logo text-xl font-bold tracking-wider z-10 flex items-center justify-center gap-3`}
       >
         <span>
           <BiDish size={30} className="text-black dark:text-white" />
@@ -54,17 +65,15 @@ const Navbar = () => {
         <span className="font-thin text-2xl text-gray-lighter">
           <RxSlash />
         </span>
-        <Link href="/" className="text-black dark:text-white tracking-wider">
+        <Link href="/" className="text-black dark:text-white tracking-widest">
           Eat
           <span className="text-indigo-500">express</span>
         </Link>
       </div>
-
       {/* nav list */}
       <nav className="ml-auto mr-10 hidden md:block">
         <NavList />
       </nav>
-
       {/* cta */}
       <div className="flex items-center justify-center gap-0 md:gap-2">
         <div className="btn-header">
@@ -83,26 +92,29 @@ const Navbar = () => {
         >
           <MdOutlineDarkMode size={20} />
         </button>
-        <button
-          onClick={() => setShowMobileMenu(!showMobileMenu)}
-          className="btn-header flex md:hidden"
-        >
-          <RxHamburgerMenu size={20} />
-        </button>
+        {isMenuOpen ? (
+          <button
+            className="btn-header flex md:hidden"
+            onClick={() => dispatch(closeMenu())}
+          >
+            <IoMdClose size={20} />
+          </button>
+        ) : (
+          <button
+            onClick={() => dispatch(openMenu())}
+            className="btn-header flex md:hidden"
+          >
+            <RxHamburgerMenu size={20} />
+          </button>
+        )}
       </div>
 
       {/* mobile menu */}
       <div
         className={`absolute ${
-          showMobileMenu ? "right-0" : "-right-full"
-        } top-0 h-screen w-full sm:w-80 bg-indigo-500 dark:bg-indigo-950 transition-all block md:hidden`}
+          isMenuOpen ? "top-0" : "-top-[700px]"
+        } left-0 h-screen w-full bg-white dark:bg-black transition-all block md:hidden -z-10`}
       >
-        <button
-          className="btn-header absolute top-2 right-2"
-          onClick={() => setShowMobileMenu(!showMobileMenu)}
-        >
-          <IoMdClose size={30} />
-        </button>
         <MobileNavList />
       </div>
     </div>
