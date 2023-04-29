@@ -5,11 +5,13 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { BsCart2 } from "react-icons/bs";
 import { MdOutlineDarkMode } from "react-icons/md";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxHamburgerMenu, RxSlash } from "react-icons/rx";
 import { increment } from "../store/features/counterSlice";
 import NavList from "./NavList";
 import MobileNavList from "./MobileNavList";
 import { IoMdClose } from "react-icons/io";
+import { BiDish } from "react-icons/bi";
+import Image from "next/image";
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -40,16 +42,21 @@ const Navbar = () => {
     <div
       className={`w-full fixed ${
         isVisible ? "translate-y-0" : "-translate-y-16"
-      } px-4 sm:px-14 md:px-20 lg:px-24 bg-indigo-500 dark:bg-indigo-950 backdrop-blur-lg drop-shadow-xl text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
+      } px-4 sm:px-14 md:px-20 lg:px-24 bg-white dark:bg-black border-b dark:border-[#333] text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
     >
       {/* logo */}
       <div
-        className={`logo text-xl font-bold tracking-wider z-10`}
-        // onClick={() => dispatch(increment())}
+        className={`logo text-xl font-bold tracking-wider z-10 flex items-center justify-center gap-3`}
       >
-        <Link href="/">
+        <span>
+          <BiDish size={30} className="text-black dark:text-white" />
+        </span>
+        <span className="font-thin text-2xl text-gray-lighter">
+          <RxSlash />
+        </span>
+        <Link href="/" className="text-black dark:text-white tracking-wider">
           Eat
-          <span className="text-gray-900 dark:text-indigo-400">express</span>
+          <span className="text-indigo-500">express</span>
         </Link>
       </div>
 

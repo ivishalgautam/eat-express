@@ -30,8 +30,8 @@ const Vegetarian = () => {
 
   const { recipes, isLoading } = useSelector((store) => store.vegetarian);
   return (
-    <div className="h-full mt-4 pb-5  flex flex-wrap gap-3">
-      <h3 className="text-xl font-bold my-2 mb-1 tracking-widest">
+    <div className="mt-4 flex flex-wrap gap-3">
+      <h3 className="text-2xl font-bold my-2 mb-1 tracking-wider">
         Vegetarian picks
       </h3>
       <Splide

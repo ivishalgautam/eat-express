@@ -13,9 +13,16 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      fontFamily: {
-        lobster: ["var(--font-outfit)", "sans-serif"],
+      colors: {
+        light: "#fafafa",
+        "gray-dark": "#111111",
+        "gray-light": "#777777",
+        "gray-lighter": "#949494",
       },
+    },
+    fontFamily: {
+      kanit: ["var(--font-kanit)"],
+      poppins: ["var(--font-poppins)"],
     },
   },
   plugins: [],

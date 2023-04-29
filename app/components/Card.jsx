@@ -5,18 +5,18 @@ import Link from "next/link";
 
 const Card = ({ id, title, image }) => {
   return (
-    <div className="shadow-lg h-[200px] flex-grow flex-shrink-0 basis-[250px] rounded-md overflow-hidden relative">
+    <div className="h-[200px] flex-grow flex-shrink-0 basis-[250px] rounded-md overflow-hidden relative border dark:border-[#333] dark:hover:border-white">
       <Link href={`/recipe/${id}`}>
-        <figure className="absolute top-0 w-full h-full dark:brightness-75 h-2/3">
+        <figure className="absolute top-0 w-full h-2/3">
           <Image
             src={image}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             alt={title}
-            className="hover:scale-110 transition-transform"
+            className="scale-125"
           />
         </figure>
-        <div className="absolute w-full h-1/3 bottom-0 p-2 text-gray-50 flex flex-col items-center justify-center bg-indigo-500 dark:bg-indigo-950">
+        <div className="absolute w-full h-1/3 bottom-0 p-2 text-gray-dark dark:text-gray-lighter flex flex-col items-center justify-center bg-white dark:bg-black">
           <p key={id} className="text-center tracking-wider text-sm ">
             {title}
           </p>

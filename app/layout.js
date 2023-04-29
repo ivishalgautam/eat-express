@@ -1,12 +1,17 @@
 import Navbar from "./components/Navbar";
 import "./globals.css";
-import { Outfit } from "next/font/google";
+import { Kanit, Poppins } from "next/font/google";
 import { Providers } from "./store/Provider";
 
-const outfit = Outfit({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
-  variable: "--font-outfit",
+  variable: "--font-poppins",
+});
+const kanit = Kanit({
+  subsets: ["latin"],
+  weight: ["100", "200", "400", "500"],
+  variable: "--font-kanit",
 });
 
 export const metadata = {
@@ -18,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${outfit.className} h-screen min-h-screen bg-slate-100 dark:bg-slate-950`}
+        className={`${kanit.className} h-screen min-h-screen bg-slate-100 dark:bg-gray-dark`}
       >
         <Providers>
           <Navbar />

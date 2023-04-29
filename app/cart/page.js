@@ -2,7 +2,7 @@ import React from "react";
 
 const CartPage = () => {
   return (
-    <div className="h-full px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-white dark:bg-gray-900 pt-20 tracking-wider">
+    <div className="h-full px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-light dark:bg-gray-dark pt-20 tracking-wider">
       CartPage Lorem ipsum dolor sit amet consectetur adipisicing elit.
       Dignissimos quibusdam repellat optio placeat ducimus rem ratione nulla
       alias! Nobis, doloremque excepturi exercitationem amet atque repudiandae

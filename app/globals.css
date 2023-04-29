@@ -10,7 +10,7 @@
 
 @layer components {
   .btn-header {
-    @apply cursor-pointer w-10 h-10 bg-indigo-800 bg-opacity-0 hover:bg-opacity-40 transition-all flex items-center justify-center rounded-full;
+    @apply cursor-pointer w-10 h-10 text-gray-dark dark:text-white bg-gray-lighter bg-opacity-0 hover:bg-opacity-10 transition-all flex items-center justify-center rounded-full;
   }
   .container {
     @apply px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-white dark:bg-gray-900;
