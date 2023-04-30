@@ -1,20 +1,20 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import { BsCart2 } from "react-icons/bs";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { RxHamburgerMenu, RxSlash } from "react-icons/rx";
-import { increment } from "../store/features/counterSlice";
+import { BiDish } from "react-icons/bi";
+
 import NavList from "./NavList";
 import MobileNavList from "./MobileNavList";
 import { IoMdClose } from "react-icons/io";
-import { BiDish } from "react-icons/bi";
-import Image from "next/image";
 import { Bebas_Neue } from "next/font/google";
-import { closeMenu, openMenu } from "../store/features/menuSlice";
+import { openNavbar, closeNavbar } from "../store/features/navbarSlice";
 import { useDispatch, useSelector } from "react-redux";
+import SearchInput from "./SearchInput";
 
 const bebas = Bebas_Neue({
   weight: ["400"],
@@ -25,10 +25,9 @@ const bebas = Bebas_Neue({
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const pathname = usePathname();
   let dispatch = useDispatch();
-  const { isMenuOpen } = useSelector((store) => store.mobileMenu);
+  const { isOpen } = useSelector((store) => store.navbar);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,6 +48,13 @@ const Navbar = () => {
     element.classList.toggle("dark");
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (e.target.tagName === "A") {
+      dispatch(closeNavbar());
+    }
+  };
+
   return (
     <div
       className={`w-full fixed ${
@@ -57,7 +63,7 @@ const Navbar = () => {
     >
       {/* logo */}
       <div
-        className={`${bebas.className} logo text-xl font-bold tracking-wider z-10 flex items-center justify-center gap-3`}
+        className={`${bebas.className} logo text-xl font-bold tracking-wider z-10 flex items-center justify-center gap-1 md:gap-3`}
       >
         <span>
           <BiDish size={30} className="text-black dark:text-white" />
@@ -70,10 +76,12 @@ const Navbar = () => {
           <span className="text-indigo-500">express</span>
         </Link>
       </div>
+
       {/* nav list */}
       <nav className="ml-auto mr-10 hidden md:block">
         <NavList />
       </nav>
+
       {/* cta */}
       <div className="flex items-center justify-center gap-0 md:gap-2">
         <div className="btn-header">
@@ -92,16 +100,16 @@ const Navbar = () => {
         >
           <MdOutlineDarkMode size={20} />
         </button>
-        {isMenuOpen ? (
+        {isOpen ? (
           <button
             className="btn-header flex md:hidden"
-            onClick={() => dispatch(closeMenu())}
+            onClick={() => dispatch(closeNavbar())}
           >
             <IoMdClose size={20} />
           </button>
         ) : (
           <button
-            onClick={() => dispatch(openMenu())}
+            onClick={() => dispatch(openNavbar())}
             className="btn-header flex md:hidden"
           >
             <RxHamburgerMenu size={20} />
@@ -111,8 +119,9 @@ const Navbar = () => {
 
       {/* mobile menu */}
       <div
+        onClick={(e) => handleClick(e)}
         className={`absolute ${
-          isMenuOpen ? "top-0" : "-top-[700px]"
+          isOpen ? "top-0" : "-top-[700px]"
         } left-0 h-screen w-full bg-white dark:bg-black transition-all block md:hidden -z-10`}
       >
         <MobileNavList />

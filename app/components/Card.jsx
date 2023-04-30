@@ -11,9 +11,11 @@ const Card = ({ id, title, image }) => {
           <Image
             src={image}
             fill
+            sizes="width:100%"
+            priority
+            // priority="true"
             style={{ objectFit: "cover" }}
             alt={title}
-            className="scale-125"
           />
         </figure>
         <div className="absolute w-full h-1/3 bottom-0 p-2 text-gray-dark dark:text-gray-lighter flex flex-col items-center justify-center bg-white dark:bg-black">

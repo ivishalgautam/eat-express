@@ -1,17 +1,15 @@
+"use client";
 import Navbar from "./components/Navbar";
 import "./globals.css";
-import { Kanit, Poppins } from "next/font/google";
-import { Providers } from "./store/Provider";
+import { Poppins } from "next/font/google";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
+import SearchInput from "./components/SearchInput";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-poppins",
-});
-const kanit = Kanit({
-  subsets: ["latin"],
   weight: ["100", "200", "400", "500"],
-  variable: "--font-kanit",
+  variable: "--font-poppins",
 });
 
 export const metadata = {
@@ -23,12 +21,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${kanit.className} h-screen min-h-screen bg-slate-100 dark:bg-gray-dark`}
+        className={`${poppins.className} h-screen min-h-screen bg-light dark:bg-gray-dark`}
       >
-        <Providers>
+        <Provider store={store}>
           <Navbar />
+          <SearchInput />
           {children}
-        </Providers>
+        </Provider>
       </body>
     </html>
   );

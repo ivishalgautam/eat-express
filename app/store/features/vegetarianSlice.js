@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchRecipes = createAsyncThunk(
-  "recipes/getVegRecipes",
+  "recipes/vegetarian",
   async (name, thunkAPI) => {
     try {
       return new Promise((resolve) => setTimeout(resolve, 2000)).then(

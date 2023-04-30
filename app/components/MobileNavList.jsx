@@ -18,7 +18,7 @@ let navList = [
 
 const MobileNavList = () => {
   return (
-    <ul className="flex flex-col items-start justify-center px-14 mt-20">
+    <ul className="flex flex-col items-start justify-center px-4 sm:px-14 mt-20">
       {navList.map((navItem, key) => {
         return (
           <li

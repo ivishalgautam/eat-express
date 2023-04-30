@@ -1,15 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./features/counterSlice";
 import vegetarianSlice from "./features/vegetarianSlice";
 import popularSlice from "./features/popularSlice";
-import menuSlice from "./features/menuSlice";
+import navbarSlice from "./features/navbarSlice";
+import recipeSlice from "./features/recipeSlice";
+import searchRecipeSlice from "./features/searchRecipeSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    navbar: navbarSlice,
     vegetarian: vegetarianSlice,
     popular: popularSlice,
-    mobileMenu: menuSlice,
+    recipe: recipeSlice,
+    searched: searchRecipeSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

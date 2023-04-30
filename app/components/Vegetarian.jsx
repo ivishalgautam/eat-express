@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../store/features/vegetarianSlice";
 import Card from "./Card";
+import CardLoading from "./CardLoading";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import CardLoading from "./CardLoading";
 
 const Vegetarian = () => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const Vegetarian = () => {
 
   const { recipes, isLoading } = useSelector((store) => store.vegetarian);
   return (
-    <div className="mt-4 flex flex-wrap gap-3">
+    <div className="mt-2 flex flex-wrap gap-3">
       <h3 className="text-2xl font-bold my-2 mb-1 tracking-wider">
         Vegetarian picks
       </h3>
