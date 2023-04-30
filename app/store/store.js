@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
 
 import vegetarianSlice from "./features/vegetarianSlice";
 import popularSlice from "./features/popularSlice";
