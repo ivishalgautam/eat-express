@@ -1,4 +1,3 @@
-// import { useRouter } from "next/router";
 "use client";
 import { fetchRecipe } from "@/app/store/features/recipeSlice";
 import React, { useEffect } from "react";
@@ -6,11 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const page = ({ params: { recipeid } }) => {
   const { recipe, isPending } = useSelector((store) => store.recipe);
-  console.log(recipe);
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchRecipe(recipeid));
-    // return () => {};
   }, []);
 
   return (

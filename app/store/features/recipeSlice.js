@@ -44,7 +44,7 @@ export const recipeSlice = createSlice({
       state.isPending = false;
       state.recipe = [];
       state.recipe.push(action.payload.data);
-      console.log(action.payload.data);
+      // console.log(action.payload.data);
     });
     builder.addCase(fetchRecipe.rejected, (state, action) => {
       state.isPending = false;

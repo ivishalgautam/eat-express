@@ -9,7 +9,7 @@ const Card = ({ id, title, image }) => {
       <Link href={`/recipe/${id}`}>
         <figure className="absolute top-0 w-full h-2/3">
           <Image
-            src={image}
+            src={image ? image : "/image-not-found.png"}
             fill
             sizes="width:100%"
             priority
