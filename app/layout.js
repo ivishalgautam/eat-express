@@ -1,9 +1,8 @@
-"use client";
+// "use client";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 import { Poppins } from "next/font/google";
-import { store } from "./store/store";
-import { Provider } from "react-redux";
+import { Providers } from "./store/Provider";
 import SearchInput from "./components/SearchInput";
 
 const poppins = Poppins({
@@ -23,11 +22,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} h-screen min-h-screen bg-light dark:bg-gray-dark`}
       >
-        <Provider store={store}>
+        <Providers>
           <Navbar />
           <SearchInput />
           {children}
-        </Provider>
+        </Providers>
       </body>
     </html>
   );

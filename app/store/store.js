@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
+
 import vegetarianSlice from "./features/vegetarianSlice";
 import popularSlice from "./features/popularSlice";
 import navbarSlice from "./features/navbarSlice";
@@ -18,3 +20,5 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 });
+
+export const wrapper = createWrapper(store);
