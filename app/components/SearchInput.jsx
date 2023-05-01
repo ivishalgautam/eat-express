@@ -2,6 +2,8 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { searchRecipes } from "../store/features/searchRecipeSlice";
 
 const SearchInput = () => {
   const [query, setQuery] = useState("");
@@ -9,7 +11,6 @@ const SearchInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(query);
     router.push(`/search/${query}`);
   };
   return (

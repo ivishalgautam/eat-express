@@ -4,7 +4,7 @@ import axios from "axios";
 
 const initialState = {
   recipe: [],
-  isPending: true,
+  isLoading: true,
 };
 
 export const fetchRecipe = createAsyncThunk(
@@ -38,16 +38,16 @@ export const recipeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchRecipe.pending, (state) => {
-      state.isPending = true;
+      state.isLoading = true;
     });
     builder.addCase(fetchRecipe.fulfilled, (state, action) => {
-      state.isPending = false;
+      state.isLoading = false;
       state.recipe = [];
       state.recipe.push(action.payload.data);
       // console.log(action.payload.data);
     });
     builder.addCase(fetchRecipe.rejected, (state, action) => {
-      state.isPending = false;
+      state.isLoading = false;
     });
   },
 });
