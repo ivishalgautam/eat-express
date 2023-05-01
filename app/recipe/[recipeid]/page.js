@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const page = ({ params: { recipeid } }) => {
   const { recipe, isPending } = useSelector((store) => store.recipe);
   let dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchRecipe(recipeid));
   }, []);

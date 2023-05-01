@@ -19,5 +19,3 @@ export const store = configureStore({
       serializableCheck: false,
     }),
 });
-
-export const wrapper = createWrapper(store);
