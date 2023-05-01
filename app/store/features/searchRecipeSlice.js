@@ -17,10 +17,9 @@ export const searchRecipes = createAsyncThunk(
           const {
             searched: { search_query },
           } = thunkAPI.getState();
-          const recipes = localStorage.getItem(search_query);
-
-          if (recipes) {
-            return JSON.parse(recipes);
+          let recipe = localStorage.getItem(search_query);
+          if (recipe) {
+            return JSON.parse(recipe);
           } else {
             let resp = await axios(
               `https://api.spoonacular.com/recipes/complexSearch?apiKey=${nextConfig.env.apikey}&query=${query}&number=15`,
@@ -31,7 +30,6 @@ export const searchRecipes = createAsyncThunk(
                 },
               }
             );
-
             if (search_query !== "") {
               localStorage.setItem(search_query, JSON.stringify(resp));
             }
@@ -48,7 +46,12 @@ export const searchRecipes = createAsyncThunk(
 export const searchRecipeSlice = createSlice({
   name: "searched_recipes",
   initialState,
-  reducers: {},
+  reducers: {
+    addQuery: (state, action) => {
+      state.search_query = "";
+      state.search_query += action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(searchRecipes.pending, (state) => {
       state.isLoading = true;
@@ -57,12 +60,12 @@ export const searchRecipeSlice = createSlice({
       state.search_results = [];
       state.isLoading = false;
       state.search_results.push(action.payload.data.results);
-      // console.log(action.payload.data.results);
+      // console.log("payload", action.payload.data.results);
     });
     builder.addCase(searchRecipes.rejected, (state) => {
       state.isLoading = false;
     });
   },
 });
-
+export const { addQuery } = searchRecipeSlice.actions;
 export default searchRecipeSlice.reducer;
