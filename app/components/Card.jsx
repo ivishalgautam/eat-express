@@ -13,7 +13,6 @@ const Card = ({ id, title, image }) => {
             fill
             sizes="width:100%"
             priority
-            // priority="true"
             style={{ objectFit: "cover" }}
             alt={title}
           />

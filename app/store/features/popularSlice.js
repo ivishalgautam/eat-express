@@ -19,7 +19,7 @@ export const fetchRecipes = createAsyncThunk(
             return JSON.parse(popular);
           } else {
             const resp = await axios(
-              `https://api.spoonacular.com/recipes/random?apiKey=${nextConfig.env.apikey}&number=6`,
+              `https://api.spoonacular.com/recipes/random?apiKey=${nextConfig.env.apikey}&number=9`,
               {
                 method: "GET",
                 headers: {

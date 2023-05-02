@@ -5,6 +5,7 @@ import popularSlice from "./features/popularSlice";
 import navbarSlice from "./features/navbarSlice";
 import recipeSlice from "./features/recipeSlice";
 import searchRecipeSlice from "./features/searchRecipeSlice";
+import cartSlice from "./features/cartSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     popular: popularSlice,
     recipe: recipeSlice,
     searched: searchRecipeSlice,
+    cart: cartSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -12,7 +12,7 @@ export const searchRecipes = createAsyncThunk(
   "recipes/searchRecipes",
   async (query, thunkAPI) => {
     try {
-      return new Promise((resolve) => setTimeout(resolve, 2000)).then(
+      return new Promise((resolve) => setTimeout(resolve, 3000)).then(
         async () => {
           const {
             searched: { search_query },

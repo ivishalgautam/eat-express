@@ -10,20 +10,14 @@ const initialState = {
 export const fetchRecipe = createAsyncThunk(
   "recipe/getRecipe",
   async (recipeid, thunkAPI) => {
-    let recipe = localStorage.getItem("recipe");
-
     try {
       return new Promise((resolve) => setTimeout(resolve, 2000)).then(
         async () => {
-          if (recipe) {
-            return JSON.parse(recipe);
-          } else {
-            const resp = await axios(
-              `https://api.spoonacular.com/recipes/${recipeid}/information?apiKey=${nextConfig.env.apikey}`
-            );
-            localStorage.setItem("recipe", JSON.stringify(resp));
-            return resp;
-          }
+          const resp = await axios(
+            `https://api.spoonacular.com/recipes/${recipeid}/information?apiKey=${nextConfig.env.apikey}`
+          );
+          localStorage.setItem("recipe", JSON.stringify(resp));
+          return resp;
         }
       );
     } catch (error) {

@@ -11,18 +11,16 @@ const SearchedRecipePage = ({ params: { recipeid } }) => {
     dispatch(fetchRecipe(recipeid));
   }, []);
 
-  if (isLoading) {
-    return <p>loading results...</p>;
-  }
-
   return (
-    <Suspense fallback={<p>loading results...</p>}>
-      <div className="h-full px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-light dark:bg-gray-dark tracking-wider">
-        {recipe?.map((recipe) => {
+    <div className="h-full px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-light dark:bg-gray-dark tracking-wider">
+      {isLoading ? (
+        <p>Loading recipe...</p>
+      ) : (
+        recipe?.map((recipe) => {
           return <h2 key={recipe.id}>{recipe.title}</h2>;
-        })}
-      </div>
-    </Suspense>
+        })
+      )}
+    </div>
   );
 };
 
