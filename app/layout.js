@@ -6,8 +6,8 @@ import { Providers } from "./store/Provider";
 import SearchInput from "./components/SearchInput";
 
 const poppins = Poppins({
-  subsets: ["latin"],
   weight: ["100", "200", "400", "500"],
+  subsets: ["latin"],
   variable: "--font-poppins",
 });
 
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} h-screen min-h-screen bg-light dark:bg-gray-dark`}
+        className={`h-screen min-h-screen bg-light dark:bg-gray-dark  ${poppins.className}`}
       >
         <Providers>
           <Navbar />

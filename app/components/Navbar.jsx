@@ -7,19 +7,19 @@ import { BsCart2 } from "react-icons/bs";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { RxHamburgerMenu, RxSlash } from "react-icons/rx";
 import { BiDish } from "react-icons/bi";
+import { IoMdClose } from "react-icons/io";
 
 import NavList from "./NavList";
 import MobileNavList from "./MobileNavList";
-import { IoMdClose } from "react-icons/io";
-import { Bebas_Neue } from "next/font/google";
 import { openNavbar, closeNavbar } from "../store/features/navbarSlice";
 import { useDispatch, useSelector } from "react-redux";
-import SearchInput from "./SearchInput";
+import { motion } from "framer-motion";
+import { Bebas_Neue } from "next/font/google";
 
 const bebas = Bebas_Neue({
   weight: ["400"],
   subsets: ["latin"],
-  // variable: "--var-bebas-neue",
+  variable: "--font-bebas",
 });
 
 const Navbar = () => {
@@ -56,7 +56,10 @@ const Navbar = () => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ y: isVisible ? 0 : -100, opacity: 1 }}
+      transition={{ ease: "easeIn", duration: 0.2 }}
       className={`w-full fixed ${
         isVisible ? "translate-y-0" : "-translate-y-16"
       } px-4 sm:px-14 md:px-20 lg:px-24 bg-white dark:bg-black border-b dark:border-[#333] text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
@@ -65,16 +68,28 @@ const Navbar = () => {
       <div
         className={`${bebas.className} logo text-xl font-bold tracking-wider z-10 flex items-center justify-center gap-1 md:gap-3`}
       >
-        <span>
+        <motion.span
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, duration: 0.5 }}
+        >
           <BiDish size={30} className="text-black dark:text-white" />
-        </span>
-        <span className="font-thin text-2xl text-gray-lighter">
+        </motion.span>
+        <motion.span
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1, duration: 0.5 }}
+          className="font-thin text-2xl text-gray-lighter"
+        >
           <RxSlash />
-        </span>
-        <Link href="/" className="text-black dark:text-white tracking-widest">
-          Eat
-          <span className="text-indigo-500">express</span>
-        </Link>
+        </motion.span>
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, duration: 0.5 }}
+        >
+          <Link href="/" className="text-black dark:text-white tracking-widest">
+            Eat
+            <span className="text-indigo-500">express</span>
+          </Link>
+        </motion.div>
       </div>
 
       {/* nav list */}
@@ -83,7 +98,12 @@ const Navbar = () => {
       </nav>
 
       {/* cta */}
-      <div className="flex items-center justify-center gap-0 md:gap-2">
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="flex items-center justify-center gap-0 md:gap-2"
+      >
         <div className="btn-header">
           <Link
             href="/cart"
@@ -115,18 +135,18 @@ const Navbar = () => {
             <RxHamburgerMenu size={20} />
           </button>
         )}
-      </div>
+      </motion.div>
 
       {/* mobile menu */}
       <div
         onClick={(e) => handleClick(e)}
         className={`absolute ${
           isOpen ? "top-0" : "-top-[700px]"
-        } left-0 h-screen w-full bg-white dark:bg-black transition-all block md:hidden -z-10`}
+        } font-poppins left-0 h-screen w-full bg-white dark:bg-black transition-all block md:hidden -z-10`}
       >
         <MobileNavList />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

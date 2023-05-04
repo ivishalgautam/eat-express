@@ -19,10 +19,10 @@ module.exports = {
         "gray-light": "#777777",
         "gray-lighter": "#949494",
       },
-    },
-    fontFamily: {
-      kanit: ["var(--font-kanit)"],
-      poppins: ["var(--font-poppins)"],
+      fontFamily: {
+        bebas: ["var(--font-bebas)"],
+        poppins: ["var(--font-poppins)"],
+      },
     },
   },
   plugins: [],

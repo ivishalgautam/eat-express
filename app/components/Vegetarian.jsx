@@ -7,8 +7,9 @@ import Card from "./Card";
 import CardLoading from "./CardLoading";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
+import { motion } from "framer-motion";
 
-const Vegetarian = () => {
+const Vegetarian = ({ font }) => {
   const dispatch = useDispatch();
   const [width, setWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 800
@@ -29,11 +30,17 @@ const Vegetarian = () => {
   }, []);
 
   const { recipes, isLoading } = useSelector((store) => store.vegetarian);
+
   return (
     <div className="mt-2 flex flex-wrap gap-3">
-      <h3 className="text-2xl font-bold my-2 mb-1 tracking-wider">
+      <motion.h3
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className={`${font} text-2xl font-bold my-2 mb-1 tracking-widest relative before:block before:absolute before:top-1/2 before:-z-10 before:rounded-b-md z-10 before:w-full before:h-3 before:bg-indigo-400 before:opacity-75`}
+      >
         Vegetarian picks
-      </h3>
+      </motion.h3>
       <Splide
         className="w-full"
         aria-label="My Favorite Images"

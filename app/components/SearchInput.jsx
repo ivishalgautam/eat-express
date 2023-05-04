@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { addQuery } from "../store/features/searchRecipeSlice";
+import { motion } from "framer-motion";
 
 const SearchInput = () => {
   const [query, setQuery] = useState("");
@@ -15,8 +16,13 @@ const SearchInput = () => {
     dispatch(addQuery(query));
     router.push(`/search/${query}`);
   };
+
   return (
-    <div className="pt-20 mb-10 px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-light dark:bg-gray-dark overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="pt-20 mb-5 px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-light dark:bg-gray-dark overflow-hidden"
+    >
       <form
         onSubmit={handleSubmit}
         className="flex items-center justify-start relative"
@@ -32,7 +38,7 @@ const SearchInput = () => {
           className="w-full px-4 py-2 pl-10 border rounded-md bg-white dark:bg-black dark:placeholder:text-gray-light dark:border-[#333] dark:focus:border-gray-lighter focus:border-gray-dark outline-none transition-colors"
         />
       </form>
-    </div>
+    </motion.div>
   );
 };
 
