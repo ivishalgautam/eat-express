@@ -11,7 +11,7 @@ export const fetchRecipe = createAsyncThunk(
   "recipe/getRecipe",
   async (recipeid, thunkAPI) => {
     try {
-      return new Promise((resolve) => setTimeout(resolve, 2000)).then(
+      return new Promise((resolve) => setTimeout(resolve, 2 * 1000)).then(
         async () => {
           let recipe = localStorage.getItem("recipe");
           if (recipe) {

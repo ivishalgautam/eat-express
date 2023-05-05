@@ -11,9 +11,8 @@ const Card = ({ id, title, image }) => {
           <Image
             src={image ? image : "/image-not-found.png"}
             fill
-            sizes="width:100%"
             priority
-            style={{ objectFit: "cover" }}
+            style={{ backgroundPosition: "center", objectFit: "cover" }}
             alt={title}
           />
         </figure>

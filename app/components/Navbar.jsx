@@ -62,7 +62,7 @@ const Navbar = () => {
       transition={{ ease: "easeIn", duration: 0.2 }}
       className={`w-full fixed ${
         isVisible ? "translate-y-0" : "-translate-y-16"
-      } px-4 sm:px-14 md:px-20 lg:px-24 bg-white dark:bg-black border-b dark:border-[#333] text-slate-100 flex items-center justify-between h-16 transition-all z-10`}
+      } px-4 sm:px-14 md:px-20 lg:px-24 bg-white dark:bg-black border-b dark:border-[#333] text-slate-100 flex items-center justify-between h-16 transition-all z-50`}
     >
       {/* logo */}
       <div
