@@ -13,16 +13,16 @@ export const fetchRecipe = createAsyncThunk(
     try {
       return new Promise((resolve) => setTimeout(resolve, 2 * 1000)).then(
         async () => {
-          let recipe = localStorage.getItem("recipe");
-          if (recipe) {
-            return JSON.parse(recipe);
-          } else {
-            const resp = await axios(
-              `https://api.spoonacular.com/recipes/${recipeid}/information?apiKey=${nextConfig.env.apikey}`
-            );
-            localStorage.setItem("recipe", JSON.stringify(resp));
-            return resp;
-          }
+          // let recipe = localStorage.getItem("recipe");
+          // if (recipe) {
+          //   return JSON.parse(recipe);
+          // } else {
+          const resp = await axios(
+            `https://api.spoonacular.com/recipes/${recipeid}/information?apiKey=${nextConfig.env.apikey}`
+          );
+          // localStorage.setItem("recipe", JSON.stringify(resp));
+          return resp;
+          // }
         }
       );
     } catch (error) {
