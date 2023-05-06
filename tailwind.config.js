@@ -21,7 +21,7 @@ module.exports = {
       },
       fontFamily: {
         bebas: ["var(--font-bebas)"],
-        poppins: ["var(--font-poppins)"],
+        ubuntu: ["var(--font-ubuntu)"],
       },
     },
   },

@@ -8,6 +8,7 @@ import { addRecipeId } from "../store/features/cartSlice";
 const SearchedResult = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const { search_results, isLoading } = useSelector((store) => store.searched);
+  const { ids } = useSelector((store) => store.cart);
   let dispatch = useDispatch();
 
   if (isLoading) {
@@ -53,7 +54,7 @@ const SearchedResult = () => {
             className="w-full h-full"
             onClick={() => handleClick(recipe.id)}
           >
-            Add to cart
+            {ids.includes(recipe.id) ? "Added to cart" : "Add to cart"}
           </button>
         </div>
       </div>

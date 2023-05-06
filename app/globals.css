@@ -15,6 +15,10 @@
   .container {
     @apply px-4 sm:px-14 md:px-20 lg:px-24 text-gray-950 dark:text-gray-100 bg-white dark:bg-gray-900;
   }
+
+  .themed-btn {
+    @apply bg-black border border-black dark:border-white dark:bg-white dark:hover:bg-black dark:hover:border-white hover:bg-white hover:border hover:border-black text-white dark:text-black dark:hover:text-white hover:text-black transition-all;
+  }
 }
 
 *::-webkit-scrollbar {

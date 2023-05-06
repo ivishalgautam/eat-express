@@ -1,14 +1,14 @@
 // "use client";
 import Navbar from "./components/Navbar";
 import "./globals.css";
-import { Poppins } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import { Providers } from "./store/Provider";
 import SearchInput from "./components/SearchInput";
 
-const poppins = Poppins({
-  weight: ["100", "200", "400", "500"],
+const ubuntu = Ubuntu({
+  weight: ["300", "400", "500"],
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-ubuntu",
 });
 
 export const metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`h-screen min-h-screen bg-light dark:bg-gray-dark  ${poppins.className}`}
+        className={`h-screen min-h-screen bg-light dark:bg-gray-dark  ${ubuntu.className}`}
       >
         <Providers>
           <Navbar />

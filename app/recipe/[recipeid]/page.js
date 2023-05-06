@@ -1,12 +1,13 @@
 "use client";
 import { fetchRecipe } from "@/app/store/features/recipeSlice";
 import { Bebas_Neue } from "next/font/google";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FcLike } from "react-icons/fc";
 import Image from "next/image";
-import loading from "./loading";
 import RecipeLoading from "@/app/components/RecipeLoading";
+import { addRecipeId } from "@/app/store/features/cartSlice";
+import { motion } from "framer-motion";
 
 const bebas = Bebas_Neue({
   weight: ["400"],
@@ -17,6 +18,7 @@ const bebas = Bebas_Neue({
 const SearchedRecipePage = ({ params: { recipeid } }) => {
   const [activeTab, setActiveTab] = useState("instructions");
   const { recipe, isLoading } = useSelector((store) => store.recipe);
+  const { ids, msg } = useSelector((store) => store.cart);
   let dispatch = useDispatch();
   console.log(recipe);
 
@@ -34,49 +36,60 @@ const SearchedRecipePage = ({ params: { recipeid } }) => {
             <div className="h-full mb-5" key={recipe.id}>
               {/* heading section */}
               <div className="py-8">
-                <p className="flex items-center justify-start gap-1">
-                  {recipe.dishTypes.map((type, key) => (
-                    <span
-                      className="text-xs font-bold text-indigo-500"
-                      key={key}
-                    >
-                      {type.toUpperCase()}
-                    </span>
-                  ))}
+                <p className="flex items-center justify-start flex-wrap gap-1">
+                  <span className="text-xs font-bold text-indigo-500">
+                    {recipe.dishTypes[0].toUpperCase()}
+                  </span>
                 </p>
-                <h2 className={`${bebas.className} text-6xl`}>
-                  {recipe.title}
+                <h2
+                  className={`${bebas.className} text-4xl md:text-6xl flex items-center justify-between`}
+                >
+                  <span>{recipe.title}</span>
                 </h2>
                 <div className="text-xs font-bold flex items-center justify-start gap-2">
                   <FcLike />
                   {recipe.aggregateLikes}
                 </div>
+                <div className={`${bebas.className} text-3xl my-2 md:text-4xl`}>
+                  <span className="text-indigo-500">$</span>
+                  {` ${recipe.pricePerServing}`}
+                </div>
+                <button
+                  className="themed-btn py-2 px-6 rounded-md mt-2 w-full sm:w-auto font-bold tracking-wider"
+                  onClick={() => dispatch(addRecipeId(recipe.id))}
+                >
+                  {ids.includes(recipe.id) ? "Added to cart" : "Add to cart"}
+                </button>
               </div>
 
-              <div className="flex items-start justify-start flex-col-reverse lg:flex-row md:items-center gap-2 h-[30rem] lg:h-80  rounded-md">
+              <div className="flex mb-4 items-start justify-start flex-col-reverse lg:flex-row md:items-center gap-2 h-[30rem] lg:h-80  rounded-md">
                 {/* recipe section */}
                 <div className="h-80 lg:flex-1 flex flex-col w-full bg-white dark:bg-black border dark:border-[#555] relative">
                   <div className="flex items-center justify-center w-full absolute top-0 left-0 z-10">
                     <button
-                      className={`flex-1 bg-white dark:bg-black py-3 border-b dark:border-[#333] ${
-                        activeTab === "instructions" ? "border-indigo-500" : ""
+                      className={`flex-1 bg-white dark:bg-black font-bold tracking-wider py-4 border-b-2 text-sm  ${
+                        activeTab === "instructions"
+                          ? "border-indigo-500"
+                          : "border-gray-200 dark:border-[#333]"
                       }`}
                       onClick={() => setActiveTab("instructions")}
                     >
-                      Instructions
+                      INSTRUCTIONS
                     </button>
                     <button
-                      className={`flex-1 bg-white dark:bg-black py-3 border-b dark:border-[#333] ${
-                        activeTab === "summary" ? "border-indigo-500" : ""
+                      className={`flex-1 bg-white dark:bg-black font-bold tracking-wider py-4 border-b-2 text-sm ${
+                        activeTab === "summary"
+                          ? "border-indigo-500"
+                          : "border-gray-200 dark:border-[#333]"
                       }`}
                       onClick={() => setActiveTab("summary")}
                     >
-                      Summary
+                      SUMMARY
                     </button>
                   </div>
                   <div className="mt-12 h-full overflow-y-auto">
                     {activeTab === "instructions" ? (
-                      <ul className="font-bold text-[#333] dark:text-gray-lighter py-2 px-8 list-none">
+                      <motion.ul className="font-bold text-[#333] dark:text-gray-lighter py-2 px-8 list-none">
                         {recipe.analyzedInstructions[0].steps.map((step) => {
                           return (
                             <li
@@ -90,10 +103,10 @@ const SearchedRecipePage = ({ params: { recipeid } }) => {
                             </li>
                           );
                         })}
-                      </ul>
+                      </motion.ul>
                     ) : (
                       <div
-                        className="text-[#333] dark:text-gray-lighter mt-4 py-2 px-8 rounded-md list-none"
+                        className="text-[#333] dark:text-gray-lighter mt-4 py-2 px-8 rounded-md list-none text-sm"
                         dangerouslySetInnerHTML={{ __html: recipe.summary }}
                       />
                     )}

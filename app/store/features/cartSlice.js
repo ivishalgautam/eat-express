@@ -5,6 +5,7 @@ import axios from "axios";
 const initialState = {
   cartRecipes: [],
   ids: [],
+  msg: "",
   isLoading: true,
 };
 
@@ -42,7 +43,9 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addRecipeId: (state, action) => {
-      state.ids.push(action.payload);
+      if (!state.ids.includes(action.payload)) {
+        state.ids.push(action.payload);
+      }
     },
     removeRecipeId: (state, action) => {
       state.ids = state.ids.filter((id) => id !== action.payload);
